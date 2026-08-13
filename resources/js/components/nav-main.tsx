@@ -18,7 +18,7 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
             {items.map((item) => (
                 <React.Fragment key={item.label}>
                     <SidebarGroupLabel>{item.label}</SidebarGroupLabel>
-                    <SidebarMenu>
+                    <SidebarMenu className="gap-1">
                         {item.menu.map((itm) => (
                             <SidebarMenuItem key={itm.title}>
                                 <SidebarMenuButton
