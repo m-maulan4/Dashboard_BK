@@ -1,8 +1,9 @@
 import type { NavItem } from '@/types';
 import { dashboard } from './routes';
-import { ClipboardList, LayoutGrid, Users } from 'lucide-react';
+import { Calendar, ClipboardList, LayoutGrid, Users } from 'lucide-react';
 import siswa from './routes/siswa';
 import kelas from './routes/kelas';
+import semester from './routes/semester';
 export const mainNavItems: NavItem[] = [
     {
         label: 'Main Menu',
@@ -26,6 +27,11 @@ export const mainNavItems: NavItem[] = [
                 title: 'Kelas',
                 href: kelas.index(),
                 icon: ClipboardList,
+            },
+            {
+                title: 'Semester',
+                href: semester.index(),
+                icon: Calendar,
             },
         ],
     },

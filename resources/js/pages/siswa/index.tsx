@@ -34,7 +34,7 @@ export default function SiswaPage() {
                 />
                 <Widget
                     color="blue"
-                    title="Tahun Ajar"
+                    title="Tahun Ajaran"
                     value={1000}
                     Icon={CalendarClock}
                 />

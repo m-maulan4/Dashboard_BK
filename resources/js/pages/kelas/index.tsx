@@ -33,7 +33,7 @@ export default function KelasPage() {
                     value={10}
                 />
                 <Widget
-                    title="Tahun Ajar"
+                    title="Tahun Ajaran"
                     Icon={CalendarClock}
                     color="red"
                     value={10}
