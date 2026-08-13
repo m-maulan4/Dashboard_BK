@@ -2,15 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/', 'welcome')->name('home');
-
+// Route::inertia('/', 'welcome')->name('home');
+Route::get('/', fn() => redirect()->route('login'))->name('home');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
     // Siswa
     Route::inertia('siswa', 'siswa/index')->name('siswa.index');
     // kelas
     Route::inertia('kelas', 'kelas/index')->name('kelas.index');
-    //semester
+    // semester
     Route::inertia('semester', 'semester/index')->name('semester.index');
 });
 
