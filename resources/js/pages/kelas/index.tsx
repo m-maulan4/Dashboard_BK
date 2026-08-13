@@ -16,13 +16,13 @@ export default function KelasPage() {
             <div className="grid grid-cols-4 gap-4">
                 <Widget
                     title="Total Kelas"
-                    Icon={LayoutList}
+                    Icon={Database}
                     color="green"
                     value={10}
                 />
                 <Widget
                     title="Jurusan"
-                    Icon={Database}
+                    Icon={LayoutList}
                     color="blue"
                     value={10}
                 />
