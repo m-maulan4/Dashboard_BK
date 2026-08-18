@@ -32,7 +32,7 @@ export default function DataTableSiswa() {
                         <Badge className="bg-green-800/40 p-2">Laki-laki</Badge>
                     </TableCell>
                     <TableCell>11 IPA-1</TableCell>
-                    <TableCell>
+                    <TableCell className="flex items-center justify-end">
                         <Button size={'icon-sm'}>
                             <Edit />
                         </Button>

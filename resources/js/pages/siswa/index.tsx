@@ -27,13 +27,13 @@ export default function SiswaPage() {
                     Icon={Mars}
                 />
                 <Widget
-                    color="blue"
+                    color="yellow"
                     title="Siswa Perempuan"
                     value={1000}
                     Icon={Venus}
                 />
                 <Widget
-                    color="blue"
+                    color="red"
                     title="Tahun Ajaran"
                     value={1000}
                     Icon={CalendarClock}

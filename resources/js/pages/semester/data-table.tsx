@@ -34,7 +34,7 @@ export default function DataTableSemester() {
                     </TableCell>
                     <TableCell>11 IPA-1</TableCell>
                     <TableCell>Aktif</TableCell>
-                    <TableCell className="flex justify-end">
+                    <TableCell className="flex items-center justify-end">
                         <Button size={'icon-sm'}>
                             <Edit />
                         </Button>
