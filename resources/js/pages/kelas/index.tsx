@@ -1,11 +1,14 @@
 import Heading from '@/components/heading';
 import Widget from '@/components/widget';
 import kelas from '@/routes/kelas';
-import { Head } from '@inertiajs/react';
-import { CalendarClock, Database, FileStack, LayoutList } from 'lucide-react';
+import { Head, usePage } from '@inertiajs/react';
+import { Database, FileStack, LayoutList } from 'lucide-react';
 import TableKelas from './table-kelas';
+import TableJurusan from './table-jurusan';
+import { kelasAPI } from './type';
 
 export default function KelasPage() {
+    const data = usePage<{ data: kelasAPI }>().props.data;
     Head({ title: 'Manajemen Data Kelas' });
     return (
         <div className="flex w-full flex-col gap-4 p-4">
@@ -13,33 +16,30 @@ export default function KelasPage() {
                 title="Manajemen Data Kelas"
                 description="Kelola seluruh data kelas beserta informasi jurusan dan tingkat"
             />
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-3 gap-4">
                 <Widget
                     title="Total Kelas"
                     Icon={Database}
                     color="green"
-                    value={10}
+                    value={data.widget.TKelas}
                 />
                 <Widget
-                    title="Jurusan"
+                    title="Total Jurusan"
                     Icon={LayoutList}
                     color="blue"
-                    value={10}
+                    value={data.widget.TJurusan}
                 />
                 <Widget
-                    title="Tingkat"
+                    title="Total Tingkatan"
                     Icon={FileStack}
                     color="yellow"
-                    value={10}
-                />
-                <Widget
-                    title="Tahun Ajaran"
-                    Icon={CalendarClock}
-                    color="red"
-                    value={10}
+                    value={data.widget.TTingkat}
                 />
             </div>
-            <TableKelas />
+            <div className="grid grid-cols-3 gap-4">
+                <TableKelas />
+                <TableJurusan />
+            </div>
         </div>
     );
 }
