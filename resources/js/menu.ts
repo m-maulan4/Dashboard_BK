@@ -28,11 +28,11 @@ export const mainNavItems: NavItem[] = [
                 href: kelas.index(),
                 icon: ClipboardList,
             },
-            {
-                title: 'Semester',
-                href: semester.index(),
-                icon: Calendar,
-            },
+            // {
+            //     title: 'Semester',
+            //     href: semester.index(),
+            //     icon: Calendar,
+            // },
         ],
     },
 ];
