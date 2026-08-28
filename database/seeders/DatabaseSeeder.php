@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Jurusan;
+use App\Models\Siswa;
+use App\Models\TahunAjaran;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +20,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::firstOrCreate([
+            'name' => fake()->name(),
+            'email' => 'admin@email.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('admin'),
+            'remember_token' => Str::random(10),
+        ]);
+        Siswa::factory(30)->create();
+        TahunAjaran::factory()->create();
+        Jurusan::firstOrCreate([
+            'jurusan' => 'ilmu pengetahuan alam',
+            'kode_jurusan' => 'ipa',
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Jurusan::firstOrCreate([
+            'jurusan' => 'ilmu pengetahuan sosial',
+            'kode_jurusan' => 'ips',
         ]);
     }
 }
