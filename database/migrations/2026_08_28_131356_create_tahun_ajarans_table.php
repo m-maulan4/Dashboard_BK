@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('tahun_ajaran');
             $table->dateTime('tgl_mulai');
             $table->dateTime('tgl_selesai');
+            $table->boolean('aktif');
             $table->softDeletes();
             $table->timestamps();
         });

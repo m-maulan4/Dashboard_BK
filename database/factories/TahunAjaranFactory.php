@@ -23,6 +23,7 @@ class TahunAjaranFactory extends Factory
             'tahun_ajaran' => now()->year . '/' . now()->subYear()->year,
             'tgl_mulai' => now(),
             'tgl_selesai' => now()->subYear(),
+            'aktif' => true
         ];
     }
 }
