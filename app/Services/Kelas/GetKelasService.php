@@ -16,10 +16,11 @@ class GetKelasService
             ->select([
                 'kelas.id',
                 'kelas.kode_kelas',
-                'jurusan.jurusan',
+                'kelas.tingkat',
+                'kelas.rombel',
+                'jurusan.kode_jurusan',
             ])
-            ->selectRaw("CONCAT(kelas.tingkat, ' ', jurusan.kode_jurusan, ' ', kelas.rombel) AS kelas")
-            ->orderBy('tingkat', 'asc')
-            ->get();
+            ->selectRaw("CONCAT(kelas.tingkat, ' ', jurusan.kode_jurusan , ' ', COALESCE(kelas.rombel, '')) AS kelas")
+            ->orderBy('tingkat', 'asc');
     }
 }

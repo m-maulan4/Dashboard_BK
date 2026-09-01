@@ -1,5 +1,6 @@
-import { LayoutGrid, User } from 'lucide-react';
+import { LayoutGrid, LayoutList, User } from 'lucide-react';
 import { dashboard } from '@/routes';
+import kelas from '@/routes/kelas';
 import siswa from '@/routes/siswa';
 import type { NavItem } from '@/types';
 
@@ -21,6 +22,11 @@ export const mainNavItems: NavItem[] = [
                 title: 'Siswa',
                 href: siswa.index(),
                 icon: User,
+            },
+            {
+                title: 'Kelas & Jurusan',
+                href: kelas.index(),
+                icon: LayoutList,
             },
         ],
     },

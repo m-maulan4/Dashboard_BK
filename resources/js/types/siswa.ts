@@ -1,4 +1,4 @@
-import type { metaPagination } from '.';
+import type { dataKelasType, metaPagination } from '.';
 
 export type siswaAPI = {
     DSiswa: dataSiswaType[];
@@ -20,12 +20,7 @@ export type dataSiswaType = {
     kode_kelas: string;
     kelas: string;
 };
-export type dataKelasType = {
-    id: number;
-    kode_kelas: string;
-    jurusan: string;
-    kelas: string;
-};
+
 export type widget = {
     TSiswa: number;
     TLaki: number;
