@@ -31,7 +31,6 @@ class KelulusanController extends Controller
             Inertia::flash('toast', ['type' => 'success', 'message' => 'Statsu siswa berhasil diubah.']);
         } catch (\Throwable $e) {
             report($e);
-            dd($e->getMessage());
             Inertia::flash('toast', ['type' => 'error', 'message' => 'Terjadi kesalahan.']);
         }
         return back();

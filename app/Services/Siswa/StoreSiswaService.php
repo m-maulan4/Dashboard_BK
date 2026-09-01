@@ -50,7 +50,6 @@ class StoreSiswaService
             });
         } catch (\Throwable $e) {
             report($e);
-            dd($e->getMessage());
             Inertia::flash('toast', ['type' => 'error', 'message' => 'Terjadi kesalahan saat nembahkan siswa baru.']);
         }
     }

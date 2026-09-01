@@ -91,7 +91,6 @@ class KenaikanKelasController extends Controller
             ]);
         } catch (\Throwable $e) {
             report($e);
-            dd($e->getMessage());
             Inertia::flash('toast', [
                 'type' => 'error',
                 'message' => 'Terjadi kesalahan saat update data kelas.',
