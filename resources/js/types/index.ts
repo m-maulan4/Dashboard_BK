@@ -3,6 +3,7 @@ export type * from './navigation';
 export type * from './ui';
 export type * from './siswa';
 export type * from './kelas';
+export type * from './kenaikan';
 
 export type metaPagination = {
     current_page: number;
