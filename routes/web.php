@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KelulusanController;
 use App\Http\Controllers\KenaikanKelasController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [KenaikanKelasController::class, 'index'])->name('index');
         Route::post('/', [KenaikanKelasController::class, 'update'])->name('update');
     });
+    Route::post('kelulusan', [KelulusanController::class, 'store'])->name('kelulusan.store');
 });
 
 require __DIR__ . '/settings.php';

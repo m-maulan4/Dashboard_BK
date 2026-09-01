@@ -35,7 +35,7 @@ export const mainNavItems: NavItem[] = [
                 icon: LayoutList,
             },
             {
-                title: 'Kenaikan Kelas',
+                title: 'Kenaikan & Kelulusan',
                 href: kenaikan.index(),
                 icon: ChartNoAxesCombined,
             },

@@ -5,9 +5,9 @@ import DataTableKenaikan from './data-table';
 export default function KenaikanPage() {
     return (
         <PageLayout
-            titleHead="Manajemen Data Kenaikan Kelas"
-            titleHeading="Manajemen Data Kenaikan Kelas"
-            descripHeading="Manajemen Data Kenaikan Kelas"
+            titleHead="Manajemen Data Kenaikan Kelas dan kelulusan"
+            titleHeading="Manajemen Data Kenaikan Kelas dan kelulusan"
+            descripHeading="Manajemen Data Kenaikan Kelas dan kelulusan"
         >
             <DataTableKenaikan />
         </PageLayout>
@@ -16,7 +16,7 @@ export default function KenaikanPage() {
 KenaikanPage.layout = {
     breadcrumbs: [
         {
-            title: 'Kenaikan kelas',
+            title: 'Kenaikan kelas dan kelulusan',
             href: kenaikan.index(),
         },
     ],

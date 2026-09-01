@@ -1,5 +1,5 @@
 import { useForm, usePage } from '@inertiajs/react';
-import { ArrowRight, TrendingUp } from 'lucide-react';
+import { AlertTriangle, ArrowRight, TrendingUp } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -45,9 +45,13 @@ export default function DialogKenaikan({ data }: { data: DataSiswaKenaikan }) {
                         onSuccess={() => setOpen(false)}
                         dataSiswa={data}
                     />
-                    <div className="rounded-lg bg-muted px-2 py-1 text-muted-foreground">
-                        Jika terjadi kesalahan saat kenaikan kelas pada siswa
-                        dapat diubah pada menu siswa
+                    <div className="flex gap-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-200">
+                        <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+
+                        <p className="text-sm leading-relaxed">
+                            Jika ada perubahan data siswa dapat diubah pada menu
+                            siswa
+                        </p>
                     </div>
                 </div>
             </DialogContent>
@@ -78,6 +82,7 @@ function FormKenaikan({
                 reset();
                 onSuccess();
             },
+            replace: true,
         });
     };
 

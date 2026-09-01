@@ -1,8 +1,24 @@
 import { router, usePage } from '@inertiajs/react';
-import { ArrowRight, RotateCw } from 'lucide-react';
+import {
+    AlertTriangle,
+    ArrowRight,
+    CheckCircle2,
+    GraduationCap,
+    RotateCw,
+} from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import {
     Table,
@@ -13,8 +29,9 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
+import kelulusan from '@/routes/kelulusan';
 import kenaikan from '@/routes/kenaikan';
-import type { kenaikanAPI } from '@/types';
+import type { DataSiswaKenaikan, kenaikanAPI } from '@/types';
 import DialogKenaikan from './dialog-kenaikan';
 
 export default function DataTableKenaikan() {
@@ -114,7 +131,7 @@ function TableKenaikan() {
                             <TableCell>{item.nama}</TableCell>
                             {item.riwayat_kelas.length === 1 ? (
                                 <TableCell>
-                                    <Bedge
+                                    <Badge
                                         color="blue"
                                         value={
                                             item.riwayat_kelas[0].kelas ?? '-'
@@ -130,7 +147,7 @@ function TableKenaikan() {
                                                 <React.Fragment
                                                     key={item.kode_kelas}
                                                 >
-                                                    <Bedge
+                                                    <Badge
                                                         color={
                                                             index === 1
                                                                 ? 'blue'
@@ -147,12 +164,16 @@ function TableKenaikan() {
                                 </TableCell>
                             )}
                             <TableCell>
-                                <Bedge color="green" value={item.status} />
+                                <Badge color="green" value={item.status} />
                             </TableCell>
                             <TableCell>
                                 {tingkatSiswa(
                                     item.riwayat_kelas.slice(-1)[0].kelas,
-                                ) !== 12 && <DialogKenaikan data={item} />}
+                                ) === 12 ? (
+                                    <ConfirmGraduationDialog dataSiswa={item} />
+                                ) : (
+                                    <DialogKenaikan data={item} />
+                                )}
                             </TableCell>
                         </TableRow>
                     ))
@@ -161,7 +182,7 @@ function TableKenaikan() {
         </Table>
     );
 }
-function Bedge({
+function Badge({
     value,
     color,
 }: {
@@ -183,5 +204,125 @@ function Bedge({
         >
             {value}
         </div>
+    );
+}
+type ConfirmGraduationDialogProps = {
+    dataSiswa: DataSiswaKenaikan;
+};
+
+function ConfirmGraduationDialog({ dataSiswa }: ConfirmGraduationDialogProps) {
+    const [open, setOpen] = useState<boolean>(false);
+    const handleSubmit = () => {
+        router.post(
+            kelulusan.store().url,
+            {
+                kode_siswa: dataSiswa.kode_siswa,
+            },
+            {
+                onSuccess: () => {
+                    setOpen(false);
+                },
+                replace: true,
+            },
+        );
+    };
+
+    return (
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+                <Button size="sm">
+                    <GraduationCap />
+                    Ubah ke Lulus
+                </Button>
+            </DialogTrigger>
+
+            <DialogContent className="w-2/5">
+                <DialogHeader>
+                    <DialogTitle className="flex items-center space-x-2 text-xl">
+                        Konfirmasi Kelulusan Siswa
+                    </DialogTitle>
+
+                    <DialogDescription>
+                        Pastikan data siswa sudah benar sebelum mengubah status
+                        menjadi lulus.
+                    </DialogDescription>
+                </DialogHeader>
+
+                <div className="space-y-4 py-2">
+                    <div className="rounded-lg border bg-muted/30 p-4">
+                        <div className="space-y-3">
+                            <div>
+                                <p className="text-xs font-medium text-muted-foreground">
+                                    Nama Siswa
+                                </p>
+                                <p className="mt-1 font-medium">
+                                    {dataSiswa.nama}
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p className="text-xs font-medium text-muted-foreground">
+                                        Kode Siswa
+                                    </p>
+                                    <p className="mt-1 text-sm">
+                                        {dataSiswa.kode_siswa}
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <p className="text-xs font-medium text-muted-foreground">
+                                        Kelas
+                                    </p>
+                                    <p className="mt-1 text-sm">
+                                        {dataSiswa.riwayat_kelas.at(-1)?.kelas}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rounded-lg border p-4">
+                        <p className="mb-3 text-sm font-medium">
+                            Perubahan Status
+                        </p>
+
+                        <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-2">
+                                <Badge color="blue" value={dataSiswa.status} />
+
+                                <span className="text-muted-foreground">→</span>
+
+                                <Badge color="green" value="Lulus" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex gap-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-amber-900 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-200">
+                        <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+
+                        <p className="text-sm leading-relaxed">
+                            Perubahan ini akan memengaruhi status akademik siswa
+                            dan mungkin tidak dapat dibatalkan.
+                        </p>
+                    </div>
+                </div>
+
+                <DialogFooter className="gap-2 sm:gap-2">
+                    <DialogClose asChild>
+                        <Button type="button" variant="outline">
+                            Batal
+                        </Button>
+                    </DialogClose>
+
+                    <Button
+                        type="button"
+                        className="bg-emerald-600 hover:bg-emerald-700"
+                        onClick={() => handleSubmit()}
+                    >
+                        <CheckCircle2 className="mr-2 h-4 w-4" />
+                        Ya, Ubah Menjadi Lulus
+                    </Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
     );
 }
