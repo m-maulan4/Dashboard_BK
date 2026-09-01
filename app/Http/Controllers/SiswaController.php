@@ -23,7 +23,7 @@ class SiswaController extends Controller
         return Inertia::render('siswa/index', [
             'data' => [
                 'DSiswa' => $DSiswa['dataAll'],
-                'DKelas' => $DKelas->execute(),
+                'DKelas' => $DKelas->execute()->get(),
                 'meta' => $DSiswa['meta'],
                 'Widget' => [
                     'TSiswa' => $DSiswa['TSiswa'],
