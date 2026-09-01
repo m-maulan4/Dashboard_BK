@@ -26,12 +26,6 @@ class StoreSiswaService
                     throw new \Exception('Kelas tidak ditemukan');
                 }
 
-                $tahunAjaranId = TahunAjaran::latest('id')->value('id');
-
-                if (!$tahunAjaranId) {
-                    throw new \Exception('Tahun ajaran tidak ditemukan');
-                }
-
                 do {
                     $kodeSiswa = strtoupper(Str::random(6));
                 } while (Siswa::where('kode_siswa', $kodeSiswa)->exists());
@@ -50,13 +44,13 @@ class StoreSiswaService
                 KelasSiswa::create([
                     'siswa_id'       => $siswa->id,
                     'kelas_id'       => $kelasId,
-                    'tahun_ajaran_id' => $tahunAjaranId,
                     'aktif'          => true,
                 ]);
                 Inertia::flash('toast', ['type' => 'success', 'message' => 'Siswa ' . $data['nama_panggilan'] . ' berhasil ditmbahkan.']);
             });
         } catch (\Throwable $e) {
             report($e);
+            dd($e->getMessage());
             Inertia::flash('toast', ['type' => 'error', 'message' => 'Terjadi kesalahan saat nembahkan siswa baru.']);
         }
     }

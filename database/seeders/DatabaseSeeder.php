@@ -27,16 +27,16 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin'),
             'remember_token' => Str::random(10),
         ]);
-        Siswa::factory(30)->create();
-        TahunAjaran::factory()->create();
-        Jurusan::firstOrCreate([
-            'jurusan' => 'ilmu pengetahuan alam',
-            'kode_jurusan' => 'ipa',
-        ]);
+        // Siswa::factory(30)->create();
+        // TahunAjaran::factory()->create();
+        // Jurusan::firstOrCreate([
+        //     'jurusan' => 'ilmu pengetahuan alam',
+        //     'kode_jurusan' => 'ipa',
+        // ]);
 
-        Jurusan::firstOrCreate([
-            'jurusan' => 'ilmu pengetahuan sosial',
-            'kode_jurusan' => 'ips',
-        ]);
+        // Jurusan::firstOrCreate([
+        //     'jurusan' => 'ilmu pengetahuan sosial',
+        //     'kode_jurusan' => 'ips',
+        // ]);
     }
 }

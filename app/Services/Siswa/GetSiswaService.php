@@ -21,7 +21,7 @@ class GetSiswaService
                 'siswa.*',
                 'kelas.kode_kelas',
             ])
-            ->selectRaw("CONCAT(kelas.tingkat, ' ', jurusan.kode_jurusan, ' ', kelas.rombel) AS kelas")
+            ->selectRaw("CONCAT_WS(' ', kelas.tingkat, jurusan.kode_jurusan, kelas.rombel) AS kelas")
             ->where('aktif', true)
             ->when($request->filled('nama'), function ($query) use ($request) {
                 $nama = $request->nama;

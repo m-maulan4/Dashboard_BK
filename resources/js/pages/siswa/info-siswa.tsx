@@ -13,6 +13,7 @@ import type { dataSiswaType } from '@/types';
 export default function InfoSiswa({ data }: { data: dataSiswaType }) {
     const getInitials = useInitials();
     const jk = data.jk === 1 ? 'Laki-laki' : data.jk === 2 ? 'Perepuan' : '';
+    console.log(data);
 
     return (
         <Dialog>

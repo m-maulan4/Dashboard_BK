@@ -20,7 +20,7 @@ class GetKelasService
                 'kelas.rombel',
                 'jurusan.kode_jurusan',
             ])
-            ->selectRaw("CONCAT(kelas.tingkat, ' ', jurusan.kode_jurusan , ' ', COALESCE(kelas.rombel, '')) AS kelas")
+            ->selectRaw("CONCAT_WS(' ', kelas.tingkat, jurusan.kode_jurusan, kelas.rombel) AS kelas")
             ->orderBy('tingkat', 'asc');
     }
 }

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswa', 'id')->cascadeOnDelete();
             $table->foreignId('kelas_id')->constrained('kelas', 'id')->cascadeOnDelete();
-            $table->foreignId('tahun_ajaran_id')->constrained('tahun_ajaran', 'id')->cascadeOnDelete();
             $table->boolean('aktif');
             $table->softDeletes();
             $table->timestamps();
